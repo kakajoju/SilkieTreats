@@ -1,0 +1,42 @@
+[
+  {
+    "day": "1",
+    "line": "1",
+    "character": "Silkie",
+    "sprite": "null",
+    "affection": "null",
+    "text": "Hello"
+  },
+  {
+    "day": "1",
+    "line": "2",
+    "character": "Curare",
+    "sprite": "normal",
+    "affection": "0",
+    "text": "Hello"
+  },
+  {
+    "day": "1",
+    "line": "3",
+    "character": "Kitchen",
+    "sprite": "null",
+    "affection": "null",
+    "text": "Chocolate, Very intimidating"
+  },
+  {
+    "day": "1",
+    "line": "4",
+    "character": "Curare",
+    "sprite": "normal",
+    "affection": "1",
+    "text": "Thanks"
+  },
+  {
+    "day": "1",
+    "line": "5",
+    "character": "Curare",
+    "sprite": "miffed",
+    "affection": "0",
+    "text": "….thanks"
+  }
+]
