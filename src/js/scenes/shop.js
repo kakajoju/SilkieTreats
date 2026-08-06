@@ -14,20 +14,25 @@ export function shop(k, script) {
     textbox.setupEverything();
 
     shop.onMousePress(() => {
+        if (!textbox.isTextFinished()) {
+            textbox.finishText();
+            return;
+        }
+
         line = line + 1;
         state.set(statePropsEnum.line, line);
         line = line = state.current().line;
+
         if (line >= script.length) {
             console.log("EOF");
             return;
             //TODO switching to end of day
         }
+        
         if (script[line].character == "54") {
             k.go("kitchen");
         }
-        
+
         textbox.changeText(script[line].text, script[line].character);
-        
-        //TODO: generate new textbox and sprite from json
     })
 }
