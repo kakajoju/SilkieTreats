@@ -1,6 +1,6 @@
 import { setBackgroundColor } from "./utils.js";
 
-export function loading(k) {
+export function endDay(k) {
     setBackgroundColor(k, "#20214a");
     k.add([
         k.text("WIP"),

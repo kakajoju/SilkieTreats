@@ -1,4 +1,4 @@
-import { setBackgroundColor } from "./areaUtils.js";
+import { setBackgroundColor } from "./utils.js";
 
 export function intro(k) {
     setBackgroundColor(k, "#20214a");

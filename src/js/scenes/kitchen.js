@@ -1,18 +1,13 @@
 import { setBackgroundColor } from "./utils.js";
 
-export function loading(k) {
-    setBackgroundColor(k, "#20214a");
-    k.add([
-        k.text("WIP"),
-        k.pos(k.center()),
-        k.anchor("center"),
-        k.fixed(),
-        k.color(255, 255, 255),
-        {
-            close() {
-                k.destroy(this);
-            },
-        },
-    ]
-    );
+export function kitchen(k) {
+    
+    
+    setBackgroundColor(k, "#da6ed1");
+    const kitchen = k.add([
+        k.pos(0, 0),
+        //k.sprite("kitchen"),
+    ]);
+
+
 }
