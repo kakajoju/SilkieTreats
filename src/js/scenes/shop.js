@@ -28,9 +28,10 @@ export function shop(k, script) {
             return;
             //TODO switching to end of day
         }
-        
+
         if (script[line].character == "54") {
             k.go("kitchen");
+            return;
         }
 
         textbox.changeText(script[line].text, script[line].character);

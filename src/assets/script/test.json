@@ -4,7 +4,7 @@
     "line": "1",
     "character": "Silkie",
     "sprite": "null",
-    "affection": "null",
+    "requirement": "null",
     "text": "Hello"
   },
   {
@@ -12,7 +12,7 @@
     "line": "2",
     "character": "Curare",
     "sprite": "normal",
-    "affection": "0",
+    "requirement": "0",
     "text": "Hello"
   },
   {
@@ -20,7 +20,7 @@
     "line": "3",
     "character": "54",
     "sprite": "null",
-    "affection": "null",
+    "requirement": "000301",
     "text": "Chocolate, Very intimidating"
   },
   {
@@ -28,7 +28,7 @@
     "line": "4",
     "character": "Curare",
     "sprite": "normal",
-    "affection": "1",
+    "requirement": "1",
     "text": "Thanks"
   },
   {
@@ -36,7 +36,7 @@
     "line": "5",
     "character": "Curare",
     "sprite": "miffed",
-    "affection": "0",
+    "requirement": "0",
     "text": "….thanks"
   },
   {
@@ -44,7 +44,7 @@
     "line": "6",
     "character": "Curare",
     "sprite": "normal",
-    "affection": "1",
+    "requirement": "1",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique egestas mauris, fringilla hendrerit ex. Phasellus imperdiet orci cursus quam sodales, efficitur suscipit ex tristique. Fusce fringilla tristique arcu at bibendum. Maecenas in laoreet ex. Vivamus malesuada porta lorem, sit amet auctor risus fermentum ornare. Praesent vel augue velit. Proin aliquet ligula at mauris posuere, vitae bibendum tortor feugiat. Suspendisse a efficitur nunc, et efficitur magna. Nulla vitae ex auctor, condimentum nunc vitae, sollicitudin magna. Curabitur velit urna, sollicitudin in pretium eu, vehicula id lectus. Vestibulum vel massa eget mauris bibendum venenatis."
   }
 ]
