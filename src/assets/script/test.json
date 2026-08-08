@@ -2,49 +2,61 @@
   {
     "day": "1",
     "line": "1",
+    "conversation": "Curare",
     "character": "Silkie",
     "sprite": "null",
-    "requirement": "null",
+    "requirement": "0",
+    "meal": "0",
     "text": "Hello"
   },
   {
     "day": "1",
     "line": "2",
+    "conversation": "Curare",
     "character": "Curare",
     "sprite": "normal",
     "requirement": "0",
+    "meal": "0",
     "text": "Hello"
   },
   {
     "day": "1",
     "line": "3",
+    "conversation": "Curare",
     "character": "54",
     "sprite": "null",
-    "requirement": "000301",
-    "text": "Chocolate, Very intimidating"
+    "requirement": "0003000300",
+    "meal": "12", 
+    "text": "Chocolate#Very intimidating"
   },
   {
     "day": "1",
     "line": "4",
+    "conversation": "Curare",
     "character": "Curare",
     "sprite": "normal",
-    "requirement": "1",
+    "requirement": "01",
+    "meal": "1",
     "text": "Thanks"
   },
   {
     "day": "1",
     "line": "5",
+    "conversation": "Curare",
     "character": "Curare",
     "sprite": "miffed",
     "requirement": "0",
+    "meal": "0",
     "text": "….thanks"
   },
   {
     "day": "1",
     "line": "6",
+    "conversation": "Curare",
     "character": "Curare",
     "sprite": "normal",
-    "requirement": "1",
+    "requirement": "01",
+    "meal": "1",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique egestas mauris, fringilla hendrerit ex. Phasellus imperdiet orci cursus quam sodales, efficitur suscipit ex tristique. Fusce fringilla tristique arcu at bibendum. Maecenas in laoreet ex. Vivamus malesuada porta lorem, sit amet auctor risus fermentum ornare. Praesent vel augue velit. Proin aliquet ligula at mauris posuere, vitae bibendum tortor feugiat. Suspendisse a efficitur nunc, et efficitur magna. Nulla vitae ex auctor, condimentum nunc vitae, sollicitudin magna. Curabitur velit urna, sollicitudin in pretium eu, vehicula id lectus. Vestibulum vel massa eget mauris bibendum venenatis."
   }
 ]

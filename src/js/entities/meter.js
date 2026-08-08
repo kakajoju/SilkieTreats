@@ -1,14 +1,14 @@
 export function makeMeter(k) {
     return k.make([
         k.rect(500, 140),
-        k.pos(800, 1200),
+        k.pos(1200, 1200),
         k.color(255, 255, 255),
         k.outline(6),
         "meter",
         {
             count: 0,
             composition: [0, 0, 0, 0, 0],
-            recipe: 0,
+            recipe: -1,
             close() {
                 k.destroy(this);
             },
@@ -18,13 +18,19 @@ export function makeMeter(k) {
                 }
             },
             clear() {
-                this.count = 0;
-                this.composition = [0, 0, 0, 0, 0];
-                this.recipe = 0;
                 const lights = k.get("light", { recursive: true });
                 lights.forEach((light) => {
                     light.clearColor();
-                })
+                });
+
+                if (this.recipe >= 0) {
+                    const recipeSelected = k.get(`recipe-${this.recipe}`, { recursive: true })[0];
+                    recipeSelected.unselectRecipe();
+                }
+
+                this.count = 0;
+                this.composition = [0, 0, 0, 0, 0];
+                this.recipe = -1;
             },
             addFlavour(num) {
                 if (this.count >= 5) {
@@ -40,7 +46,20 @@ export function makeMeter(k) {
                 this.recipe = num;
                 //TODO change text of recipe picked
             },
+            isMixablep() {
+                return this.count >= 5 && this.recipe >= 0;
+            },
+            getFlavours() {
+                const res = [0, 0, 0, 0, 0];
+                this.composition.forEach((item) => {
+                    res[item] = res[item] + 1;
+                })
 
+                return res;
+            },
+            getRecipe() {
+                return this.recipe;
+            }
         }
     ])
 }
@@ -58,7 +77,7 @@ function makeLight(k, index) {
                 this.color = k.Color.fromHex(colors[num]);
             },
             clearColor() {
-                this.color = k.Color.fromHex("#FFF");
+                this.color = k.Color.fromHex("#FFFFFF");
             }
         }
     ])

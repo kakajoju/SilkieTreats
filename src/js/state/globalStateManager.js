@@ -2,18 +2,36 @@
 export const statePropsEnum = {
     day: "day",
     line: "line",
+    conversation: "conversation",
     affectionCurare: "affectionCurare",
     affectionPolder: "affectionPolder",
     affectionLantern: "affectionLantern",
+    requiredFlavour: "requiredFlavour",
+    requiredRecipe: "requiredRecipe",
+    orderText: "orderText",
+    altRecipe: "altRecipe",
+    altFlavour: "altFlavour",
+    finishedFlavour: "finishedFlavour",
+    finishedRecipe: "finishedRecipe",
+    isFoodGood: "isFoodGood",
 };
 
 function initStateManager() {
     const state = {
         day: 1,
         line: 0,
+        conversation: "",
         affectionCurare: 0,
         affectionPolder: 0,
         affectionLantern: 0,
+        requiredFlavour: [],
+        requiredRecipe: -1,
+        orderText: [],
+        altRecipe: -1,
+        altFlavour: [],
+        finishedFlavour:  [],
+        finishedRecipe: -1,
+        isFoodGood: 0,
     };
 
     return {

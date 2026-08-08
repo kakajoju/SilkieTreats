@@ -7,6 +7,7 @@ export function makeRecipe(k, type, number, x, y) {
         k.animate(),
         k.rotate(),
         `${type}Recipe`,
+        `recipe-${number}`,
         "recipe",
         {
             typeNumber: number,
@@ -16,11 +17,13 @@ export function makeRecipe(k, type, number, x, y) {
             },
             playHoverAnim() {
                 //TODO change sprite
-                this.unanimate("scale");
-                this.unanimate("angle");
-                this.animation.seek(0);
-                this.animate("scale", [k.vec2(1, 1), k.vec2(1.2, 1.2)], { duration: 0.5, loops: 1 });
-                this.animate("angle", [0, -5], { duration: 0.5, loops: 1 });
+                if (!this.selected) {
+                    this.unanimate("scale");
+                    this.unanimate("angle");
+                    this.animation.seek(0);
+                    this.animate("scale", [k.vec2(1, 1), k.vec2(1.2, 1.2)], { duration: 0.5, loops: 1 });
+                    this.animate("angle", [0, -5], { duration: 0.5, loops: 1 });
+                }
             },
             clearHoverAnim() {
                 if (!this.selected) {
