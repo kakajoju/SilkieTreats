@@ -7,10 +7,12 @@ import { makeBinButton } from "../entities/binButton.js";
 import { makeMixButton } from "../entities/mixButton.js";
 import { makeServeButton } from "../entities/serveButton.js";
 import { makeFood } from "../entities/food.js";
+import { makeOrderSummary } from "../entities/orderSummary.js";
 
 export function kitchen(k) {
+    //TODO add two recipes if affection above x and day x
     const flavourList = ["Special", "Cute", "Elegant", "Intimidating", "Simple"];
-    const recipeList = ["Chocolates", "Bonbons", "Rohlicky", "Lollies", "Cake"]; //TODO add Tiramisu + ??? for later routes
+    const recipeList = ["Chocolates", "Bonbons", "Rohlicky", "Lollies", "Croissant"]; //TODO add Tiramisu + banana bread for later routes
     let finishedFood = 0;
 
     const reqFlavours = state.current().requiredFlavour;
@@ -18,6 +20,7 @@ export function kitchen(k) {
     const altRecipe = state.current().altRecipe;
     const altFlavours = state.current().altFlavour;
     const orderText = state.current().orderText;
+    const affectionInfo = state.current().kitchenAffectionInfo;
 
     setBackgroundColor(k, "#da6ed1");
     const kitchen = k.add([
@@ -26,12 +29,15 @@ export function kitchen(k) {
     ]);
 
     flavourList.forEach((flavour, index) => {
-        kitchen.add(makeJar(k, flavour, index, 500 * (index + 1), 200));
+        kitchen.add(makeJar(k, flavour, index, 800 + (index * 300), 200));
     })
 
     recipeList.forEach((flavour, index) => {
-        kitchen.add(makeRecipe(k, flavour, index, 400 * (index + 1), 800));
+        kitchen.add(makeRecipe(k, flavour, index, 400 + (index * 300), 800));
     })
+
+    const orderSummaryComp = kitchen.add(makeOrderSummary(k));
+    orderSummaryComp.initializeSummary(orderText);
 
     kitchen.add(makeBinButton(k));
     const mixBtn = kitchen.add(makeMixButton(k));
@@ -73,7 +79,7 @@ export function kitchen(k) {
 
     k.onClick("bin", (btn) => {
         if (finishedFood) {
-            finishedFood.clear();
+            finishedFood.close();
             finishedFood = 0;
         }
         meter.clear();
@@ -83,8 +89,9 @@ export function kitchen(k) {
 
     k.onClick("mix", (btn) => {
         if (meter.isMixablep() && !mixBtn.isMixedp()) {
-            //TODO create food from meter data
-            //finishedFood = kitchen.add(makeFood())
+            finishedFood = kitchen.add(makeFood(k, 600, 600));
+            finishedFood.initializeFood(meter.getRecipe(), meter.getFlavours());
+
             serveBtn.enableServeBtn();
             mixBtn.mix();
         }
@@ -93,9 +100,10 @@ export function kitchen(k) {
     k.onClick("serve", (btn) => {
         if (btn.isEnabledp()) {
             const finFlavours = meter.getFlavours();
+            const finRecipe = meter.getRecipe();
             let reqCompleted = 1;
             let altFlag = 1;
-            if (meter.getRecipe() == reqRecipe) {
+            if (finRecipe == reqRecipe) {
                 altFlag = 0;
                 for (let i = 0; i < 5; i++) {
                     if (finFlavours < reqFlavours) {
@@ -104,7 +112,7 @@ export function kitchen(k) {
                     }
                 }
             }
-            else if (meter.getRecipe() == altRecipe) {
+            else if (finRecipe == altRecipe) {
                 for (let i = 0; i < 5; i++) {
                     if (finFlavours < altFlavours) {
                         reqCompleted = 0;
@@ -119,21 +127,28 @@ export function kitchen(k) {
 
             if (reqCompleted && altFlag) {
                 state.set(statePropsEnum.isFoodGood, 2);
-                //TODO affection granted (2x)
+
+                const newAffection = state.current()[`affection${affectionInfo[0]}`] + parseInt(affectionInfo[2]);
+                state.set(statePropsEnum[`affection${affectionInfo[0]}`], newAffection);
             } else if (reqCompleted) {
                 state.set(statePropsEnum.isFoodGood, 1);
-                //TODO affection granted
+
+                const newAffection = state.current()[`affection${affectionInfo[0]}`] + parseInt(affectionInfo[1]);
+                state.set(statePropsEnum[`affection${affectionInfo[0]}`], newAffection);
+            } else {
+                state.set(statePropsEnum.isFoodGood, 0);
             }
             console.log(altFlag);
             console.log(reqCompleted);
             console.log(state.current().isFoodGood);
-            //TODO destroy food
-            //TODO send to global variable food type
+            //TODO destroy food??
             const nextLine = state.current().line + 1;
+
             state.set(statePropsEnum.line, nextLine);
+            state.set(statePropsEnum.finishedRecipe, finRecipe);
+            state.set(statePropsEnum.finishedFlavour, finFlavours);
+
             k.go("shop");
         }
     })
-
-    //TODO add two recipes if affection above x and day x
 }

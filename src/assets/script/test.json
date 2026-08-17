@@ -4,9 +4,10 @@
     "line": "1",
     "conversation": "Curare",
     "character": "Silkie",
-    "sprite": "null",
+    "sprite": "enter",
     "requirement": "0",
-    "meal": "0",
+    "affectionGroup": "Curare",
+    "meal": "-1",
     "text": "Hello"
   },
   {
@@ -16,7 +17,8 @@
     "character": "Curare",
     "sprite": "normal",
     "requirement": "0",
-    "meal": "0",
+    "affectionGroup": "Curare",
+    "meal": "-1",
     "text": "Hello"
   },
   {
@@ -24,10 +26,11 @@
     "line": "3",
     "conversation": "Curare",
     "character": "54",
-    "sprite": "null",
+    "sprite": "11",
     "requirement": "0003000300",
+    "affectionGroup": "Curare",
     "meal": "12", 
-    "text": "Chocolate#Very intimidating"
+    "text": "Chocolate#Very intimidating#Or maybe perhaps elegant????"
   },
   {
     "day": "1",
@@ -35,8 +38,9 @@
     "conversation": "Curare",
     "character": "Curare",
     "sprite": "normal",
-    "requirement": "01",
-    "meal": "1",
+    "requirement": "0#1",
+    "affectionGroup": "Curare",
+    "meal": "1#2",
     "text": "Thanks"
   },
   {
@@ -46,6 +50,7 @@
     "character": "Curare",
     "sprite": "miffed",
     "requirement": "0",
+    "affectionGroup": "Curare",
     "meal": "0",
     "text": "….thanks"
   },
@@ -54,9 +59,10 @@
     "line": "6",
     "conversation": "Curare",
     "character": "Curare",
-    "sprite": "normal",
-    "requirement": "01",
-    "meal": "1",
+    "sprite": "leave",
+    "requirement": "0#1",
+    "affectionGroup": "Curare",
+    "meal": "1#0",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tristique egestas mauris, fringilla hendrerit ex. Phasellus imperdiet orci cursus quam sodales, efficitur suscipit ex tristique. Fusce fringilla tristique arcu at bibendum. Maecenas in laoreet ex. Vivamus malesuada porta lorem, sit amet auctor risus fermentum ornare. Praesent vel augue velit. Proin aliquet ligula at mauris posuere, vitae bibendum tortor feugiat. Suspendisse a efficitur nunc, et efficitur magna. Nulla vitae ex auctor, condimentum nunc vitae, sollicitudin magna. Curabitur velit urna, sollicitudin in pretium eu, vehicula id lectus. Vestibulum vel massa eget mauris bibendum venenatis."
   }
 ]

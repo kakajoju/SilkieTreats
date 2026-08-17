@@ -1,22 +1,36 @@
 import { setBackgroundColor } from "./utils.js";
 import { makeTextbox } from "../entities/textbox.js";
 import { state, statePropsEnum } from "../state/globalStateManager.js";
+import { makeCharacter } from "../entities/character.js";
+import { makeFood } from "../entities/food.js";
 
 export function shop(k, script) {
-    //TODO array w keys to get y positions of all character sprites
-    //TODO maybe the same for food???
     setBackgroundColor(k, "#20214a");
     const shop = k.add([
         k.pos(0, 0),
         //k.sprite("shop"),
     ]);
 
-    //TODO spawn character
 
     checkLine(k, script);
     let line = state.current().line;
+    const kitchenReturn = state.current().isFoodGood >= 0 ? 1 : 0;
+    let finFood = 0;
+
+    const customer = shop.add(makeCharacter(k, kitchenReturn));
+    customer.playAnimation(script[line].converstaion, script[line].sprite);
+
+    if (kitchenReturn) {
+        const finFlavours = state.current().finishedFlavour;
+        const finRecipe = state.current().finishedRecipe;
+
+        finFood = shop.add(makeFood(k, 1000, 1100));
+        finFood.initializeFood(finRecipe, finFlavours);
+    }
+
     const textbox = shop.add(makeTextbox(k, script[line].character, script[line].text));
     textbox.setupEverything();
+
 
     shop.onMousePress(() => {
         if (!textbox.isTextFinished()) {
@@ -32,6 +46,10 @@ export function shop(k, script) {
 
         if (line < script.length) {
             textbox.changeText(script[line].text, script[line].character);
+            customer.playAnimation(script[line].converstaion, script[line].sprite);
+            if (script[line].sprite == "leave" && finFood) { //I HOPE IT WORKS
+                finFood.close();
+            }
         }
     })
 }
@@ -52,7 +70,7 @@ function checkLine(k, script) {
         return;
     }
 
-    while (!script[line].requirement.includes(state.current()[`affection${script[line].conversation}`]) || script[line].meal != state.current().isFoodGood) {
+    while (!script[line].requirement.includes(state.current()[`affection${script[line].affectionGroup}`].toString()) || !script[line].meal.includes(state.current().isFoodGood.toString())) {
         line = line + 1;
         state.set(statePropsEnum.line, line);
         line = line = state.current().line;
@@ -68,7 +86,7 @@ function checkLine(k, script) {
         };
 
         if (startConversation != script[line].conversation) {
-            changeConversation();
+            changeConversation(finFood);
             state.set(statePropsEnum.conversation, script[line].conversation);
             let startConversation = state.current().conversation;
         }
@@ -84,6 +102,8 @@ function endDay(k) {
 function kitchenGoTo(k, line, script) {
     const ingredientsArray = script[line].requirement.split("");
     const recipe = script[line].meal.split("");
+    const affection = script[line].sprite.split("");
+    const affectionRecipient = script[line].affectionGroup;
     const order = script[line].text.split("#");
 
     if (ingredientsArray.length > 5) {
@@ -99,19 +119,17 @@ function kitchenGoTo(k, line, script) {
     }
     state.set(statePropsEnum.orderText, order);
 
+    affection.unshift(affectionRecipient);
+    state.set(statePropsEnum.kitchenAffectionInfo, affection);
+
     k.go("kitchen");
 }
 
-function changeConversation() {
+function changeConversation(food) {
     endConversation();
-
-    //TODO character spawning
 }
 
 function endConversation() {
-    //TODO character leaving animation
-    //TODO food disappearing
-
     state.set(statePropsEnum.conversation, "");
     state.set(statePropsEnum.requiredFlavour, []);
     state.set(statePropsEnum.requiredRecipe, -1);
@@ -120,5 +138,6 @@ function endConversation() {
     state.set(statePropsEnum.orderText, []);
     state.set(statePropsEnum.finishedFlavour, []);
     state.set(statePropsEnum.finishedRecipe, -1);
-    state.set(statePropsEnum.isFoodGood, 0);
+    state.set(statePropsEnum.isFoodGood, -1);
+    state.set(statePropsEnum.kitchenAffectionInfo, []);
 }

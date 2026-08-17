@@ -14,6 +14,7 @@ export const statePropsEnum = {
     finishedFlavour: "finishedFlavour",
     finishedRecipe: "finishedRecipe",
     isFoodGood: "isFoodGood",
+    kitchenAffectionInfo: "kitchenAffectionInfo",
 };
 
 function initStateManager() {
@@ -24,6 +25,7 @@ function initStateManager() {
         affectionCurare: 0,
         affectionPolder: 0,
         affectionLantern: 0,
+        kitchenAffectionInfo: [],
         requiredFlavour: [],
         requiredRecipe: -1,
         orderText: [],
@@ -31,7 +33,7 @@ function initStateManager() {
         altFlavour: [],
         finishedFlavour:  [],
         finishedRecipe: -1,
-        isFoodGood: 0,
+        isFoodGood: -1,
     };
 
     return {
