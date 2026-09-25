@@ -4,15 +4,21 @@ import { state, statePropsEnum } from "../state/globalStateManager.js";
 import { makeCharacter } from "../entities/character.js";
 import { makeFood } from "../entities/food.js";
 
-export function shop(k, script) {
+export function shop(k, scripts) {
     setBackgroundColor(k, "#20214a");
+    if (state.current().day > scripts.length) {
+        endDay(k, state.current().day + 1, scripts.length);
+        return;
+    }
+    
     const shop = k.add([
         k.pos(0, 0),
         //k.sprite("shop"),
     ]);
 
+    const script = scripts[state.current().day - 1];
 
-    checkLine(k, script);
+    checkLine(k, script, scripts);
     let line = state.current().line;
     const kitchenReturn = state.current().isFoodGood >= 0 ? 1 : 0;
     let finFood = 0;
@@ -41,7 +47,7 @@ export function shop(k, script) {
         line = line + 1;
         state.set(statePropsEnum.line, line);
 
-        checkLine(k, script);
+        checkLine(k, script, scripts);
         line = state.current().line;
 
         if (line < script.length) {
@@ -54,11 +60,11 @@ export function shop(k, script) {
     })
 }
 
-function checkLine(k, script) {
+function checkLine(k, script, scripts) {
     let line = state.current().line;
 
     if (line >= script.length) {
-        endDay(k);
+        endDay(k, state.current().day + 1, scripts.length);
         return;
     }
 
@@ -76,7 +82,7 @@ function checkLine(k, script) {
         line = line = state.current().line;
 
         if (line >= script.length) {
-            endDay(k);
+            endDay(k, state.current().day + 1, scripts.length);
             return;
         }
 
@@ -93,10 +99,14 @@ function checkLine(k, script) {
     }
 }
 
-function endDay(k) {
-    console.log("EOF");
+function endDay(k, nextDay, days) {
     endConversation();
-    //TODO switching to end of day
+
+    if (nextDay > days) {
+        k.go("endSequence");
+    } else {
+        k.go("endDay");
+    }
 }
 
 function kitchenGoTo(k, line, script) {
