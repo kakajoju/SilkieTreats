@@ -1,7 +1,7 @@
 export function makeTextbox(k, character, text) {
     return k.make([
         k.pos(800, 1200),
-        k.rect(1500, 440), // Rectangle width: 200, height: 100
+        k.rect(1500, 440),
         k.color(255, 255, 255),
         k.outline(2),
         "textbox",
@@ -38,9 +38,9 @@ function makeTextboxText(k, text) {
     return k.make([
         k.text("", {
             size: 50,
-            width: 1480, // Wrap text before hitting rect edge
+            width: 1480,
         }),
-        k.pos(20, 80), // Padding from rectangle edge
+        k.pos(20, 80),
         k.color(0, 0, 0),
         "textboxText",
         {
@@ -78,7 +78,7 @@ function makeNameTag(k, character) {
             size: 60,
             width: 1460,
         }),
-        k.pos(20, 20), // Padding from rectangle edge
+        k.pos(20, 20),
         k.color(0, 0, 0),
         "textboxNametag",
         {
