@@ -1,9 +1,9 @@
 export function makeTextbox(k, character, text) {
     return k.make([
-        k.pos(800, 1200),
-        k.rect(1500, 440),
-        k.color(255, 255, 255),
+        k.pos(0, 50),
+        k.sprite("textbox", { width: k.width(), height: k.height() }),
         k.outline(2),
+        k.opacity(0.95),
         "textbox",
         {
             close() {
@@ -38,9 +38,9 @@ function makeTextboxText(k, text) {
     return k.make([
         k.text("", {
             size: 50,
-            width: 1480,
+            width: 1950,
         }),
-        k.pos(20, 80),
+        k.pos(620, 1405),
         k.color(0, 0, 0),
         "textboxText",
         {
@@ -78,8 +78,8 @@ function makeNameTag(k, character) {
             size: 60,
             width: 1460,
         }),
-        k.pos(20, 20),
-        k.color(0, 0, 0),
+        k.pos(670, 1277),
+        k.color(77, 0, 77),
         "textboxNametag",
         {
             close() {

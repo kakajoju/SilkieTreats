@@ -12,3 +12,12 @@ export const k = kaplay({
 });
 
 k.loadBean();
+
+k.loadSprite("shop", "./assets/background/shopBackground2.png");
+k.loadSprite("shopForeground", "./assets/background/shopBackgroundProps.png");
+k.loadSprite("endDay", "./assets/background/endDayBackground.png");
+
+k.loadSprite("continueBtn", "./assets/ui/continueBtn.png");
+k.loadSprite("saveBtn", "./assets/ui/saveBtn.png");
+k.loadSprite("savedBtn", "./assets/ui/savedBtn.png");
+k.loadSprite("textbox", "./assets/ui/textbox.png");

@@ -8,11 +8,14 @@ export function endDay(k, scripts) {
     setBackgroundColor(k, "#20214a");
     const endDay = k.add([
         k.pos(0,0),
-        //k.sprite("endDay-1"), CHANGE BASED ON DAY
+        k.sprite("endDay", { width: k.width(), height: k.height() }), //TODO CHANGE BASED ON DAY
     ]);
 
-    const continueBtn = endDay.add(makeBtn(k, "continue", 500, 500));
-    const saveBtn = endDay.add(makeBtn(k, "save", 600, 600));
+    const continueBtn = endDay.add(makeBtn(k, "continue", 2384, 824));
+    continueBtn.setUpBtn();
+
+    const saveBtn = endDay.add(makeBtn(k, "save", 2496, 1278));
+    saveBtn.setUpBtn();
 
     k.onClick("continue", (btn) => {
         state.set(statePropsEnum.day, nextDay);

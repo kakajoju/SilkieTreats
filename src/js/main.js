@@ -9,7 +9,7 @@ import { endSequence } from "./scenes/endSequence.js";
 async function main() {
     //TODO: load all the days and put them in a script array
     const dayOne = await (await fetch("../assets/script/test.json")).json();
-    const script = [dayOne, ];
+    const script = [dayOne, dayOne, ];
 
     k.scene("shop", () => {
         shop(k, script);

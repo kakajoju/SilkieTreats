@@ -13,7 +13,7 @@ export function shop(k, scripts) {
     
     const shop = k.add([
         k.pos(0, 0),
-        //k.sprite("shop"),
+        k.sprite("shop", { width: k.width(), height: k.height() }),
     ]);
 
     const script = scripts[state.current().day - 1];

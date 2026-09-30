@@ -1,14 +1,30 @@
 export function makeBtn(k, type, x, y) {
     return k.make([
         k.pos(x, y),
-        k.rect(200, 50), //TODO ADD SPRITES
-        k.color(255, 255, 255),
+        k.sprite("bean"),
         k.outline(2),
+        k.scale(2),
         k.area(),
         `${type}`,
         {
+            setUpBtn() {
+                this.switchSprite(type);
+            },
+
             switchSprite(sprite) {
-                //TODO sprite switch
+                switch (sprite) {
+                    case "save":
+                        this.use(k.sprite("saveBtn"));
+                        break;
+                    case "continue":
+                        this.use(k.sprite("continueBtn"));
+                        break;
+                    case "saved":
+                        this.use(k.sprite("savedBtn"));
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     ])
